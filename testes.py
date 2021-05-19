@@ -233,13 +233,53 @@ def lista_dados():
 {'nome': 'Yasmin Dias', 'vaga': 'Android', 'idade': '21 ', 'estado': 'SC' }]
 
     return dados
+
+tot_cadastrados = len(lista_dados())
 contador = 0
+contador_qa = 0
+contador_android = 0
+contador_ios = 0
 
-print(len(lista_dados()))
-
-while contador < len(lista_dados()):
-    print('--'*30)
-    print(f' {contador+1} --> {lista_dados()[contador]["nome"]} {lista_dados()[contador]["idade"]} anos, reside em: {lista_dados()[contador]["estado"]}. -- | {lista_dados()[contador]["vaga"]} |--')
-    print('--' * 30)
+while contador < len(lista_dados()): # --> LAÇO QUE MOSTRA OS DADOS:
+    # print('--'*30)
+    # print(f' {contador+1} --> {lista_dados()[contador]["nome"]} {lista_dados()[contador]["idade"]} anos, reside em: {lista_dados()[contador]["estado"]}. -- | {lista_dados()[contador]["vaga"]} |--')
+    # print('--' * 30)
     # sleep(0.2)
+    if lista_dados()[contador]["vaga"] == 'QA':
+        contador_qa += 1
+
+    elif lista_dados()[contador]["vaga"] == 'Android':
+        contador_android += 1
+
+    elif lista_dados()[contador]["vaga"] == 'iOS':
+        contador_ios += 1
+
     contador += 1
+
+
+
+calc_percent_android = tot_cadastrados/contador_android
+calc_percent_qa = tot_cadastrados/contador_qa
+calc_percent_ios = tot_cadastrados/contador_ios
+
+
+print(f'Ao todo temos {tot_cadastrados} pessoas cadastradas.')
+print(f'{contador_android} vagas para Android.')
+print(f'{contador_qa} vagas para QA.')
+print(f'{contador_ios} vagas para iOS.')
+print(f'Analisando a lista temos {calc_percent_android} % pessoas cadastradas para Android.')
+print(f'Analisando a lista temos {calc_percent_qa} % pessoas cadastradas para QA.')
+print(f'Analisando a lista temos {calc_percent_ios} % pessoas cadastradas para iOS.')
+
+
+# while lista_dados()[contador]["vaga"] == 'QA':
+#     print(f'{contador}')
+#     sleep(0.2)
+#     contador += 1
+
+# while contador < len(lista_dados()): # --> LAÇO QUE MOSTRA OS DADOS:
+#     print('--'*30)
+#     print(f' {contador+1} --> {lista_dados()[contador]["nome"]} {lista_dados()[contador]["idade"]} anos, reside em: {lista_dados()[contador]["estado"]}. -- | {lista_dados()[contador]["vaga"]} |--')
+#     print('--' * 30)
+#     sleep(0.2)
+#     contador += 1
