@@ -239,37 +239,140 @@ contador = 0
 contador_qa = 0
 contador_android = 0
 contador_ios = 0
+tot_idade_candidatos_qa = int(0)
+contador_estado_sc = 0
+contador_estado_sp = 0
+contador_estado_pr = 0
+contador_estado_rj = 0
+contador_estado_am = 0
+contador_estado_al = 0
+contador_estado_go = 0
 
 while contador < len(lista_dados()): # --> LAÇO QUE MOSTRA OS DADOS:
     # print('--'*30)
     # print(f' {contador+1} --> {lista_dados()[contador]["nome"]} {lista_dados()[contador]["idade"]} anos, reside em: {lista_dados()[contador]["estado"]}. -- | {lista_dados()[contador]["vaga"]} |--')
     # print('--' * 30)
     # sleep(0.2)
+
+
     if lista_dados()[contador]["vaga"] == 'QA':
         contador_qa += 1
+        idade_candidato_qa = int(lista_dados()[contador]["idade"])
+        tot_idade_candidatos_qa += idade_candidato_qa
+
+        # print(f'Idade individual é: {idade_candidato_qa}')
+        # print(f'{contador_qa} --> idade {tot_idade_candidatos_qa}')
+
+
+
+
+
 
     elif lista_dados()[contador]["vaga"] == 'Android':
         contador_android += 1
 
+
     elif lista_dados()[contador]["vaga"] == 'iOS':
         contador_ios += 1
+
+    if lista_dados()[contador]["estado"] == 'SC':
+        contador_estado_sc += 1
+
+    elif lista_dados()[contador]["estado"] == 'SP':
+        contador_estado_sp += 1
+
+    elif lista_dados()[contador]["estado"] == 'PR':
+        contador_estado_pr += 1
+        nome_candidato_pr = lista_dados()[contador]["nome"]
+        idade_candidato_pr = lista_dados()[contador]["idade"]
+        estado_pessoa_pr = lista_dados()[contador]["estado"]
+        vaga_pessoa_pr = lista_dados()[contador]["vaga"]
+
+    elif lista_dados()[contador]["estado"] == 'RJ':
+        contador_estado_rj += 1
+        if contador_estado_rj == 1:
+            um_nome_candidato_rj = lista_dados()[contador]["nome"]
+            um_idade_candidato_rj = lista_dados()[contador]["idade"]
+            um_estado_pessoa_rj = lista_dados()[contador]["estado"]
+            um_vaga_pessoa_rj = lista_dados()[contador]["vaga"]
+
+        elif contador_estado_rj == 2:
+            dois_nome_candidato_rj = lista_dados()[contador]["nome"]
+            dois_idade_candidato_rj = lista_dados()[contador]["idade"]
+            dois_estado_pessoa_rj = lista_dados()[contador]["estado"]
+            dois_vaga_pessoa_rj = lista_dados()[contador]["vaga"]
+
+    elif lista_dados()[contador]["estado"] == 'AM':
+        contador_estado_am += 1
+        nome_candidato_am = lista_dados()[contador]["nome"]
+        idade_candidato_am = lista_dados()[contador]["idade"]
+        estado_pessoa_am = lista_dados()[contador]["estado"]
+        vaga_pessoa_am = lista_dados()[contador]["vaga"]
+
+    elif lista_dados()[contador]["estado"] == 'AL':
+        contador_estado_al += 1
+        nome_candidato_al = lista_dados()[contador]["nome"]
+        idade_candidato_al = lista_dados()[contador]["idade"]
+        estado_pessoa_al = lista_dados()[contador]["estado"]
+        vaga_pessoa_al = lista_dados()[contador]["vaga"]
+
+    elif lista_dados()[contador]["estado"] == 'GO':
+        contador_estado_go += 1
+        nome_candidato_go = lista_dados()[contador]["nome"]
+        idade_candidato_go = lista_dados()[contador]["idade"]
+        estado_pessoa_go = lista_dados()[contador]["estado"]
+        vaga_pessoa_go = lista_dados()[contador]["vaga"]
+
+    if contador > -1:
+        n_ocorrencia = contador+1
+        convertendo_idade_str_int = int(lista_dados()[contador]["idade"])
+        # print(f'{n_ocorrencia} - Teste fatiamento dados instrutor: {convertendo_idade_str_int}')
+
+        if convertendo_idade_str_int < 31 and lista_dados()[contador]["estado"] == 'SC':
+            print(f'{n_ocorrencia} - {lista_dados()[contador]}')
 
     contador += 1
 
 
 
-calc_percent_android = tot_cadastrados/contador_android
-calc_percent_qa = tot_cadastrados/contador_qa
-calc_percent_ios = tot_cadastrados/contador_ios
 
 
+calc_percent_android = (contador_android*100)/tot_cadastrados
+calc_percent_qa = (contador_qa*100)/tot_cadastrados
+calc_percent_ios = (contador_ios*100)/tot_cadastrados
+soma_todos_porcent = (calc_percent_android+calc_percent_qa)+calc_percent_ios
+idade_media_candidatos_qa = tot_idade_candidatos_qa/contador_qa
+
+print()
 print(f'Ao todo temos {tot_cadastrados} pessoas cadastradas.')
 print(f'{contador_android} vagas para Android.')
 print(f'{contador_qa} vagas para QA.')
 print(f'{contador_ios} vagas para iOS.')
-print(f'Analisando a lista temos {calc_percent_android} % pessoas cadastradas para Android.')
-print(f'Analisando a lista temos {calc_percent_qa} % pessoas cadastradas para QA.')
-print(f'Analisando a lista temos {calc_percent_ios} % pessoas cadastradas para iOS.')
+print(f'Analisando a lista temos {calc_percent_android:.2f} % pessoas cadastradas para Android.')
+print(f'{calc_percent_qa:.2f} % pessoas cadastradas para QA.')
+print(f'{calc_percent_ios:.2f} % pessoas cadastradas para iOS.')
+print(f'Somando todas as fatias percentuais fecham em {soma_todos_porcent:.2f}% de 230.')
+print(f'A idade media dos candidatos de QA é: {idade_media_candidatos_qa:.2f}')
+print(f'De todos os candidatos {contador_estado_sc} são do estado de: SC ')
+print(f'{contador_estado_sp} são do estado de: SP ')
+print(f'{contador_estado_pr} são do estado de: PR ')
+print(f'{contador_estado_rj} são do estado de: RJ ')
+print(f'{contador_estado_go} são do estado de: GO ')
+print(f'{contador_estado_am} são do estado de: AM ')
+print(f'{contador_estado_al} são do estado de: AL ')
+print('Abaixo seguem os dados das pessoas nos estados com menas ocorrências:')
+print('No Paraná temos:')
+print(f'Nome: {nome_candidato_pr} / Idade:{idade_candidato_pr} / Estado:{estado_pessoa_pr} / Vaga:{vaga_pessoa_pr}')
+print('EM RJ:')
+print(f'Nome: {um_nome_candidato_rj} / Idade:{um_idade_candidato_rj} / Estado:{um_estado_pessoa_rj} / Vaga:{um_vaga_pessoa_rj}')
+print(f'Nome: {dois_nome_candidato_rj} / Idade:{dois_idade_candidato_rj} / Estado:{dois_estado_pessoa_rj} / Vaga:{dois_vaga_pessoa_rj}')
+print('EM GO:')
+print(f'Nome: {nome_candidato_go} / Idade:{idade_candidato_go} / Estado:{estado_pessoa_go} / Vaga:{vaga_pessoa_go}')
+print('EM AM:')
+print(f'Nome: {nome_candidato_am} / Idade:{idade_candidato_am} / Estado:{estado_pessoa_am} / Vaga:{vaga_pessoa_am}')
+print('EM AL:')
+print(f'Nome: {nome_candidato_al} / Idade:{idade_candidato_al} / Estado:{estado_pessoa_al} / Vaga:{vaga_pessoa_al}')
+print(f'')
 
 
 # while lista_dados()[contador]["vaga"] == 'QA':
